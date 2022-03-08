@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="./img/FAVICON.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Shizuru&display=swap" rel="stylesheet">
+    <title> GAME</title>
+  </head>
+
+  <body>
+    <p id="score" style="font-size: 20px;"hidden></p>
+  	<IMG id="player" hidden src="./img/monkey.png">
+  	<IMG id="food" hidden src="./img/banana.png">
+  	<IMG id="obstacle" hidden src="./img/soldier.png">
+  	<IMG id="specialBanana" hidden src="./img/specialBanana.png">
+    <div class="primary-div">
+      <img src="./img/LOGO.png" style="border-radius: 10%; margin: 20px;" width="70" height="70">
+      <div class="secondary-div">
+        <div class="inventory-div">
+
+          <div class="score-inv-header-div">
+            <p class="p-inventory-header" style="margin: 0;">Inventory</p>
+          </div>
+
+          <div class="inventory-grid">
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+            <div class="inv-grid-item"></div>
+          </div>
+
+          <div class="score-inv-header-div">
+            <p class="p-inventory-header" style="margin: 0;">Coins: 50 <img src="./img/specialBanana2.png" width="35" height="35"></p>
+          </div>
+        </div>
+
+        <div class="game-div">
+          <canvas id="gameCanvas" width="800" height="800"style="border:1px solid #000000;">
+          </canvas>
+        </div>
+
+        <div class="score-div">
+
+            <div class="score-inv-header-div">
+              <p class="p-inventory-header" style="margin: 0;">TOP 10 Players</p>
+            </div>
+
+            <div class="score-grid">
+              <div class="score-grid-item"><div class="gold-number-score">1</div><p class="p-name-score">Erin Hoste</p></div>
+              <div class="score-grid-item"><div class="silver-number-score">2</div><p class="p-name-score">Ralf Ela Van</p></div>
+              <div class="score-grid-item"><div class="bronze-number-score">3</div><p class="p-name-score">Jimi Slobodan</p></div>
+              <div class="score-grid-item"><div class="normal-number-score">4</div><p class="p-name-score">Aglaea Faramond</p></div>
+              <div class="score-grid-item"><div class="normal-number-score">5</div><p class="p-name-score">Lise Pascal</p></div>
+              <div class="score-grid-item"><div class="normal-number-score">6</div><p class="p-name-score">Giovanbattista</p></div>
+              <div class="score-grid-item"><div class="normal-number-score">7</div><p class="p-name-score">Zheng Indra</p></div>
+              <div class="score-grid-item"><div class="normal-number-score">8</div><p class="p-name-score">Mohammad Iser</p></div>
+              <div class="score-grid-item"><div class="normal-number-score">9</div><p class="p-name-score">Emelia Merideth</p></div>
+              <div class="score-grid-item"><div class="normal-number-score">10</div><p class="p-name-score">Elva Sjang</p></div>
+              <div class="score-grid-item-player"><div class="normal-number-score">186</div><p class="p-name-score">cdiac431</p></div>
+            </div>
+
+            <div class="score-inv-header-div">
+              <p class="p-inventory-header" style="margin: 0;">Score: 1000</p>
+            </div>
+
+            <button id="startButton"type="button" onclick="StartGame()" hidden>Start Game</button>
+        </div>
+
+      </div>
+    </div>
+    <script src="javaScript.js"></script>
+  </body>
+
+
+</html>

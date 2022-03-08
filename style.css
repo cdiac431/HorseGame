@@ -1,0 +1,144 @@
+  html{
+    font-family: 'Kanit', sans-serif;
+    background-image: url('./img/BGJungle.png');
+  }
+
+  .primary-div {
+    height: 98vh;
+    width: 196vh;
+    margin: auto;
+  }
+
+  .secondary-div{
+    position: absolute;
+    width: 150vh;
+    height: 82.6vh;
+    top: 50%;
+    left: 50%;
+    margin-top: -41vh;
+    margin-left: -75vh;
+  }
+
+  .inventory-div{
+    position: absolute;
+    width: 300px;
+    height: 82.6vh;
+  }
+
+  .game-div{
+    background-color: yellow;
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    margin-left: 326px;
+  }
+
+  .score-inv-header-div{
+    background-color: #2F85DC;
+    width: 300px;
+    height: 10vh;
+  }
+
+  .score-div{
+    width: 300px;
+    height: 82.6vh;
+    float: right;
+    position: relative;
+  }
+
+  #startButton{
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    right:    0;
+    bottom:   0;
+
+  }
+
+  .inventory-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: auto;
+  }
+
+  .inv-grid-item {
+    background-color: #CCE5FF;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 23px;
+    border-radius: 20%;
+    margin: 5px;
+    height:35px;
+  }
+
+  .score-grid-item {
+    background-color: #CCE5FF;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    margin: 2px;
+    border-radius: 15px;
+  }
+
+  .score-grid-item-player{
+    background-color: #66B2FF;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    font-size: 20px;
+    margin: 2px;
+    text-align: center;
+    border-radius: 15px;
+  }
+
+  .p-inventory-header{
+    font-size: 30px;
+    text-align: center;
+    padding-top: 10%;
+  }
+
+  .p-number-score{
+    margin: 0;
+    font-size: 20px;
+    float: left;
+    font-weight: bold;
+  }
+
+  .p-name-score{
+    float: right;
+    margin: 0;
+
+  }
+
+  .gold-number-score{
+    background-color: #FFDF00;
+    width: 12%;
+    float: left;
+    border-radius: 50% 50% 50% 50%;
+      }
+
+  .silver-number-score{
+    background-color: #808080;
+    width: 12%;
+    float: left;
+    border-radius: 50% 50% 50% 50%;
+  }
+
+  .bronze-number-score{
+    background-color: #CD7F32;
+    width: 12%;
+    float: left;
+    border-radius: 50% 50% 50% 50%;
+  }
+
+  .normal-number-score{
+    background-color: #99CCFF;
+    width: 12%;
+    float: left;
+    border-radius: 50% 50% 50% 50%;
+  }
+}

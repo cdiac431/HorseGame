@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+	<p id="score"></p>
+	<IMG id="wolf" width=0 height=0 src="./img/wolf.png">
+	<IMG id="chicken" width=0 height=0 src="./img/chicken.png">
+	<IMG id="lava" width=0 height=0 src="./img/lava.png">
+	<button type="button" onclick="StartGame()">Start Game</button>
+
+	<canvas id="gameCanvas" width="800" height="800"
+	style="border:1px solid #000000;">
+	</canvas>
+
+	<script>
+
+	var score = 0;
+	var width = 100;
+	var height = 100;
+	var lengthArrai = 8;
+
+	var gamePanel,horsex,horsey,cursorX,cursorY;
+
+	var canvas = document.getElementById("gameCanvas");
+	var ctx = canvas.getContext("2d");
+
+	document.addEventListener('click', movementHorse);
+
+
+	// var musicadefondo = new sound("./gato.mp3");
+	// var efecto1 = new sound("./crack.mp3");
+	// var efecto2 = new sound("./salto.wav");
+	// var efecto3 = new sound("./pujarnivell.wav");
+
+	CreateTable();
+	createArray();
+
+	function StartGame(){
+		// musicadefondo.play();
+		createArray();
+		CreateTable();
+		resetArray();
+		PutHorse();
+		PutBandera();
+		score=0;
+		document.getElementById("score").innerHTML = "Score:"+score;
+	}
+
+
+	function CreateTable(){
+		var b = -1;
+
+		for (var i=0; i<8; i++){
+			b=b * -1;
+			for (var j=0; j<8; j++) {
+				if (b == 1){ctx.fillStyle = "#000000";
+				}else{ctx.fillStyle = "#FFFFFF";}
+				ctx.fillRect(j*width, i*height , width, height);
+				b=b * -1;
+			}
+		}
+	}
+
+	function createArray(){
+		gamePanel = new Array(lengthArrai);
+		for (i=0; i<lengthArrai; i++) {
+			gamePanel[i]= new Array (lengthArrai);
+		}
+	}
+
+	function resetArray(){
+		for (i=0;i<lengthArrai;i++) {
+			for(j=0;j<lengthArrai;j++) {
+				gamePanel[i][j]=0;
+			}
+		}
+	}
+
+	function ReadArray() {
+
+		for (var i=0;i<lengthArrai;i++) {
+			for (var j=0;j<lengthArrai;j++) {
+
+				if (gamePanel[i][j] == 1){
+					ctx.drawImage(wolf,j*width,i*height,width,height);
+
+				}else if (gamePanel[i][j] == 2)	{
+					ctx.drawImage(chicken,j*width,i*height,width,height);
+
+				}else if (gamePanel[i][j] == 3)	{
+					ctx.drawImage(lava,j*width,i*height,width,height);
+				}
+		}
+	}
+	positionAvaiable();
+	}
+
+	function PutHorse(){
+
+		horsex=Math.floor(Math.random()*lengthArrai);
+		horsey=Math.floor(Math.random()*lengthArrai);
+
+		while (gamePanel[horsey][horsex] != 0){
+
+			horsex=Math.floor(Math.random()*lengthArrai);
+			horsey=Math.floor(Math.random()*lengthArrai);
+
+		}
+			gamePanel[horsey][horsex] = 1	;
+			ReadArray();
+	}
+
+	function PutBandera(){
+
+			var banderax=Math.floor(Math.random()*lengthArrai);
+			var banderay=Math.floor(Math.random()*lengthArrai);
+
+			while (gamePanel[banderax][banderay] != 0){
+
+			banderax=Math.floor(Math.random()*lengthArrai);
+			banderay=Math.floor(Math.random()*lengthArrai);
+
+		}
+			gamePanel[banderay][banderax] = 2 ;
+			ReadArray();
+		 }
+
+		 function positionAvaiable(){
+
+			 try{
+				 if(gamePanel[horsey-1][horsex+2] == 0 || gamePanel[horsey-1][horsex+2] == 2){
+					 ctx.lineWidth = "6";
+					 ctx.strokeStyle = "green";
+					 ctx.strokeRect((horsex+2)*width,(horsey-1)*height,width,height);}
+			 }catch(e){
+				 console.log(e.message);
+			 }
+
+			 try{
+				 if(gamePanel[horsey+1][horsex+2] == 0 || gamePanel[horsey+1][horsex+2] == 2){
+					 ctx.lineWidth = "6";
+					 ctx.strokeStyle = "green";
+					 ctx.strokeRect((horsex+2)*width,(horsey+1)*height,width,height);}
+			 }catch(e){
+				 console.log(e.message);
+			 }
+			 try{
+
+			 if(gamePanel[horsey-1][horsex-2] == 0 || gamePanel[horsey-1][horsex-2] == 2){
+				 ctx.lineWidth = "6";
+				 ctx.strokeStyle = "green";
+				 ctx.strokeRect((horsex-2)*width,(horsey-1)*height,width,height);}
+			}catch(e){
+				console.log(e.message);
+			}
+			try{
+
+			if(gamePanel[horsey+1][horsex-2] == 0 || gamePanel[horsey+1][horsex-2] == 2){
+				ctx.lineWidth = "6";
+				ctx.strokeStyle = "green";
+				ctx.strokeRect((horsex-2)*width,(horsey+1)*height,width,height);}
+			}catch(e){
+				console.log(e.message);
+			}
+			try{
+			if(gamePanel[horsey-2][horsex+1] == 0 || gamePanel[horsey-2][horsex+1] == 2){
+				ctx.lineWidth = "6";
+				ctx.strokeStyle = "green";
+				ctx.strokeRect((horsex+1)*width,(horsey-2)*height,width,height);}
+			}catch(e){
+				console.log(e.message);
+			}
+
+			try{
+			if(gamePanel[horsey-2][horsex-1] == 0 || gamePanel[horsey-2][horsex-1] == 2){
+				ctx.lineWidth = "6";
+				ctx.strokeStyle = "green";
+				ctx.strokeRect((horsex-1)*width,(horsey-2)*height,width,height);}
+			}catch(e){
+				console.log(e.message);
+			}
+
+			try{
+			if(gamePanel[horsey+2][horsex+1] == 0 || gamePanel[horsey+2][horsex+1] == 2){
+				ctx.lineWidth = "6";
+				ctx.strokeStyle = "green";
+				ctx.strokeRect((horsex+1)*width,(horsey+2)*height,width,height);}
+			}catch(e){
+				console.log(e.message);
+			}
+
+			try{
+			if(gamePanel[horsey+2][horsex-1] == 0 || gamePanel[horsey+2][horsex-1] == 2){
+				ctx.lineWidth = "6";
+				ctx.strokeStyle = "green";
+				ctx.strokeRect((horsex-1)*width,(horsey+2)*height,width,height);}
+			}catch(e){
+				console.log(e.message);
+			}
+		}
+
+	function movementHorse(){
+
+		var rect = canvas.getBoundingClientRect();
+
+	  cursorY = Math.floor((event.clientY - rect.top)/width);
+	  cursorX = Math.floor((event.clientX - rect.left)/width);
+
+		if (gamePanel[cursorY][cursorX] != 3){
+
+			if (cursorX == horsex +2  &&  cursorY == horsey -1){
+
+				MovementBandera();
+				gamePanel[cursorY][cursorX]=1;
+				gamePanel[horsey][horsex]=0;
+				horsex += 2;
+				horsey -= 1;
+				CreateTable();
+				PutShit();
+				efecto2.play();
+				ReadArray();
+
+
+			}else if (cursorX == horsex +2  &&  cursorY == horsey +1){
+
+				MovementBandera();
+				gamePanel[cursorY][cursorX]=1;
+				gamePanel[horsey][horsex]=0;
+				horsex += 2;
+				horsey += 1;
+				CreateTable();
+				PutShit();
+				efecto2.play();
+				ReadArray();
+
+			}else if (cursorX == horsex -2  &&  cursorY == horsey - 1){
+
+				MovementBandera();
+				gamePanel[cursorY][cursorX]=1;
+				gamePanel[horsey][horsex]=0;
+				horsex -= 2;
+				horsey -= 1;
+				CreateTable();
+				PutShit();
+				efecto2.play();
+				ReadArray();
+
+			}else if (cursorX == horsex -2  &&  cursorY == horsey + 1){
+
+				MovementBandera();
+				gamePanel[cursorY][cursorX]=1;
+				gamePanel[horsey][horsex]=0;
+				horsex -= 2;
+				horsey += 1;
+				CreateTable();
+				PutShit();
+				efecto2.play();
+				ReadArray();
+
+			}else if (cursorX == horsex +1  &&  cursorY == horsey + 2){
+
+				MovementBandera();
+				gamePanel[cursorY][cursorX]=1;
+				gamePanel[horsey][horsex]=0;
+				horsex += 1;
+				horsey += 2;
+				CreateTable();
+				PutShit();
+				efecto2.play();
+				ReadArray();
+
+		}else if (cursorX == horsex +1  &&  cursorY == horsey -2){
+
+				MovementBandera();
+				gamePanel[cursorY][cursorX] = 1;
+				gamePanel[horsey][horsex] = 0;
+				horsex += 1;
+				horsey -= 2;
+				CreateTable();
+				PutShit();
+				efecto2.play();
+				ReadArray();
+
+			}else if (cursorX == horsex -1  &&  cursorY == horsey + 2){
+
+				MovementBandera();
+				gamePanel[cursorY][cursorX]=1;
+				gamePanel[horsey][horsex]=0;
+				horsex -= 1;
+				horsey += 2;
+				CreateTable();
+				PutShit();
+				efecto2.play();
+				ReadArray();
+
+		}else if (cursorX == horsex -1  &&  cursorY == horsey -2){
+
+				MovementBandera();
+				gamePanel[cursorY][cursorX]=1;
+				gamePanel[horsey][horsex]=0;
+				horsey -= 2;
+				horsex -= 1;
+				CreateTable();
+				PutShit();
+				efecto2.play();
+				ReadArray();
+			}
+	}
+	}
+
+
+	function PutShit(){
+
+			var wardx=Math.floor(Math.random()*lengthArrai);
+			var wardy=Math.floor(Math.random()*lengthArrai);
+
+			while (gamePanel[wardx][wardy] != 0){
+
+			wardx=Math.floor(Math.random()*lengthArrai);
+			wardy=Math.floor(Math.random()*lengthArrai);
+
+		}
+			gamePanel[wardx][wardy]= 3 ;
+	}
+
+
+	function MovementBandera(){
+		if (gamePanel[cursorY][cursorX] == 2){
+
+				efecto1.play();
+				PutBandera();
+				score++;
+
+				if (score % 5 == 0){
+					PutBandera();
+					efecto3.play();
+				}
+
+				document.getElementById("score").innerHTML = "Score " + score;
+		}
+	}
+
+	musicadefondo = new sound("gato.mp3");
+	efecto1 = new sound("crack.mp3");
+	efecto2 = new sound("salto.wav");
+	efecto3 = new sound("pujarnivell.wav");
+
+
+	function sound(src) {
+	  this.sound = document.createElement("audio");
+	  this.sound.src = src;
+	  this.sound.setAttribute("preload", "auto");
+	  this.sound.setAttribute("controls", "none");
+	  this.sound.style.display = "none";
+
+	  document.body.appendChild(this.sound);
+
+	  this.play = function(){
+	    this.sound.play();
+	  }
+
+	  this.stop = function(){
+	    this.sound.pause();
+	  }
+	}
+
+	</script>
+
+	<style>
+
+		html{
+			background-image: url('./img/BG.jpg');
+		}
+	</style>
+</body>
+</html>
